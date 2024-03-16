@@ -1,6 +1,15 @@
 {
+  "name": "TeleMedicine-via-WebRTC",
+  "version": "1.0.0",
+  "description": "TeleMedicine-via-WebRTC",
+  "main": "main.js",
+  "scripts": {
+    "Start": "nodemon server.js",
+    "watch": "npx watchify ./public/main.js -o ./public/bundle.js"
+  },
   "dependencies": {
     "express": "^4.18.3",
+    "simple-peer": "^9.11.1",
     "socket.io": "^4.7.5"
   }
 }
