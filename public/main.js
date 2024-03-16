@@ -1,5 +1,5 @@
 let peer = require('simple-peer');
-let socket = let();
+let socket = io();
 const vider = document.querySelector('video');
 let client = {};
 
@@ -32,12 +32,10 @@ navigator.mediaDevices.getUserMedia( {video : true, audio : true} )
                     socket.emit('Offer', data);
                 }
             })
-
             client.peer = peer;
-
         }
 
-// Type notInit
+// FOr peer of Type init
         function FrontAnswer(offer){
             let peer = InitPeer('notInit');
             peer.on('signal', (data) => {
@@ -59,6 +57,7 @@ navigator.mediaDevices.getUserMedia( {video : true, audio : true} )
             video.srcObject = stream;
             video.class = 'ember-responsive-item';
             document.querySelector('#peerDiv').appendChild(video);
+            video.play();
         }
 
         function SessionActive(){
