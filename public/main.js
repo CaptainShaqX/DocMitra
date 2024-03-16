@@ -65,6 +65,11 @@ navigator.mediaDevices.getUserMedia( {video : true, audio : true} )
             document.write('Session Active, Please Come Back Later')
         }
 
+        socket.on('BackOffer', FrontAnswer)
+        socket.on('BackAnswer', SignalAnswer)
+        socket.on('SessionActive', SessionActive)
+        socket.on('CreatePeer', MakePeer)
+
 
     }
 )
