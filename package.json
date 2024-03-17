@@ -1,4 +1,4 @@
-{
+{ 
   "name" : "TeleMedicine-via-WebRTC",
   "version" : "1.0.0",
   "description" : "TeleMedicine-via-WebRTC",
@@ -15,5 +15,8 @@
 
   "devDependencies": {
     "watchify" : "^1."
+},
+"engines": {
+  "node": ">=14.0.0"
 }
 }
