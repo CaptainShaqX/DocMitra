@@ -67,10 +67,16 @@ navigator.mediaDevices.getUserMedia( {video : true, audio : true} )
         }
 
 
+
         socket.on('BackOffer', FrontAnswer)
         socket.on('BackAnswer', SignalAnswer)
         socket.on('SessionActive', SessionActive)
         socket.on('CreatePeer', MakePeer)
+
+        function Disconnect(socket) {
+            if (clients > 0)
+            clients--
+        }
 
 
 })
