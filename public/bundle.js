@@ -5242,7 +5242,7 @@ navigator.mediaDevices.getUserMedia( {video : true, audio : true} )
 
 // Used to initaialize a peer connection
         function InitPeer(type){
-            let peer = new Peer ({initiator: (type == 'init') ? true : false, stream: stream, tricle: false});
+            let peer = new Peer ({initiator: (type == 'init') ? true : false, stream: stream, trickle: false});
             peer.on('stream', function(stream) {
             CreateVideo(stream)
         })
@@ -5291,11 +5291,37 @@ navigator.mediaDevices.getUserMedia( {video : true, audio : true} )
         }
 
         function SessionActive(){
-            document.write('Session Active, Please Come Back Later')
+            // document.write('Session Active, Please Come Back Later')
+            document.getUserMedia('Session Active, Please Come Back Later')
+            
         }
 
+        socket.on('CreatePeer', function() {
+            let peer = InitPeer('notInit');
+            peer.on('stream', function(stream) {
+                // Create a new div element
+                let div = document.createElement('div');
+                // Create a new video element
+                let video = document.createElement('video');
+                // Set the source of the video element to the other user's stream
+                video.srcObject = stream;
+                // Add the video element to the div
+                div.appendChild(video);
+                // Create a new p element for the user type
+                let p = document.createElement('p');
+                // Set the text of the p element to the user type
+                p.textContent = 'User Type: ' + userType; // Replace userType with the actual user type
+                // Add the p element to the div
+                div.appendChild(p);
+                // Add the div element to the DOM
+                document.body.appendChild(div);
+                // Play the video
+                video.play();
+            });
+        });
+
         socket.on('BackOffer', FrontAnswer)
-        socket.on('backAnswer', SignalAnswer)
+        socket.on('BackAnswer', SignalAnswer)
         socket.on('SessionActive', SessionActive)
         socket.on('CreatePeer', MakePeer)
 
